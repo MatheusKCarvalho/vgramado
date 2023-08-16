@@ -1,0 +1,32 @@
+const diasEl = document.getElementById("dias");
+const HorasEl = document.getElementById("Horas");
+const MinutosEl = document.getElementById("Minutos");
+const Segundos = document.getElementById("Segundos");
+
+const Viagem ="5 Set 2023";
+
+function contagem(){
+
+    const ViagemDate = new Date(Viagem);
+    const currentDate = new Date();
+
+    const totalSegundos = (Viagem - currentDate) / 1000;
+    const dias = Math.floor(totalSegundos / 3600 / 24);
+    const Horas = Math.floor(totalSegundos/ 3600) % 24;
+    const Minutos = Math.floor(totalSegundos / 60) % 60;
+    const Segundos = Math.floor(totalSegundos) % 60;
+ 
+    diasEl.innerHTML = dias;
+    HorasEl.innerHTML = formatTime(Horas);
+    MinutosEl.innerHTML = formatTime(Minutos);
+    SegundosEl.innerHTML = formatTime(Segundos);
+
+}
+
+function formartTime(time){
+    return time < 10 ? '0${time}' : time;
+}
+
+contagem();
+
+setInterval(contagem, 1000);
